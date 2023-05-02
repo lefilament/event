@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="registration_event_question"
+              name="Registration Event Question" inherit_id="website_event_questions.registration_event_question">
+        <xpath expr="//label" position="after">
+            <t t-if="question.question_type == 'multiple_choice'">
+                <div>
+                    <t t-foreach="question.answer_ids" t-as="answer">
+                        <input type="checkbox" t-att-id="scales" t-attf-name="question_answer-#{registration_index}-#{question.id}"/>
+                        <label t-attf-for="question_answer-#{registration_index}-#{question.id}"><span t-esc="answer.name"/></label>
+                    </t>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>
