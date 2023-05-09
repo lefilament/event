@@ -9,7 +9,7 @@
         <xpath expr="//span" position="after">
             <t t-if="question.question_type == 'date'">
                 <input
-                    type="date"
+                    type="datetime-local"
                     t-attf-name="question_answer-#{registration_index}-#{question.id}"
                     class="col-lg-12 form-control"
                 />

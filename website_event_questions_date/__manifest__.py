@@ -5,7 +5,7 @@
     "summary": "Questions on Events - Type date",
     "version": "16.0.1.0.0",
     "category": "Marketing",
-    "development_status": "Production/Stable",
+    "website": "https://github.com/OCA/event",
     "author": "Odoo Community Association (OCA),Le Filament",
     "license": "AGPL-3",
     "application": False,
