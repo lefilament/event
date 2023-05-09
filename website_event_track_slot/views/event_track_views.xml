@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="view_event_track_form">
+            <field name="name">event.track.form.inherit</field>
+            <field name="model">event.track</field>
+            <field name="inherit_id" ref="website_event_track.view_event_track_form"/>
+            <field name="arch" type="xml">
+                <field name="date" position="before">
+                    <field name="is_slot_management"/>
+                    <field name="event_track_slot_ids" attrs="{'invisible': [('is_slot_management', '=', False )]}">
+                        <tree editable="bottom">
+                            <field name="date"/>
+                            <field name="duration"/>
+                            <field name="date_end"/>
+                        </tree>
+                    </field>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
