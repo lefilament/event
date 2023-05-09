@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template
+        id="registration_event_question"
+        name="Registration Event Question"
+        inherit_id="website_event_questions.registration_event_question"
+    >
+        <xpath expr="//span" position="after">
+            <t t-if="question.question_type == 'multiple_choice'">
+                <div class="mb-4">
+                    <t t-foreach="question.answer_ids" t-as="answer">
+                        <div class="form-check">
+                            <input
+                                type="checkbox"
+                                class="form-check-input"
+                                t-attf-id="#{registration_index}-#{question.id}"
+                                t-attf-name="question_answer-#{registration_index}-#{question.id}"
+                            />
+                            <label
+                                t-attf-for="question_answer-#{registration_index}-#{question.id}"
+                                class="form-check-label fw-normal"
+                            ><span t-out="answer.name" />
+                            </label>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template
+        id="registration_event_question"
+        name="Registration Event Question"
+        inherit_id="website_event_questions.registration_event_question"
+    >
+        <xpath expr="//span" position="after">
+            <t t-if="question.question_type == 'date'">
+                <input
+                    type="date"
+                    t-attf-name="question_answer-#{registration_index}-#{question.id}"
+                    class="col-lg-12 form-control"
+                />
+            </t>
+        </xpath>
+    </template>
+
+</odoo>
