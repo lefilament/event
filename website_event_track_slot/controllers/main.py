@@ -15,12 +15,8 @@ class EventTrackController(EventTrackController):
 
 
     def _prepare_calendar_values(self, event):
-        """ This methods slit the day (max end time - min start time) into
-        15 minutes time slots. For each time slot, we assign the tracks that
-        start at this specific time slot, and we add the number of time slot
-        that the track covers (track duration / 15 min). The calendar will be
-        divided into rows of 15 min, and the talks will cover the corresponding
-        number of rows (15 min slots). """
+        """ This methods allows to calculate the number of tracks by days if slots
+        configurated in track event. """
         res = super(EventTrackController, self)._prepare_calendar_values(event)
         days = res["days"]
 
@@ -46,7 +42,7 @@ class EventTrackController(EventTrackController):
 
     def _split_track_slot_by_days(self, slot, local_tz):
         """
-        Based on the track start_date and the duration,
+        Based on the track slot date and the duration,
         split the track duration into :
             start_time by day : number of time slot (15 minutes) that the track takes on that day.
         E.g. :  start date = 01-01-2000 10:00 PM and duration = 3 hours
@@ -77,15 +73,7 @@ class EventTrackController(EventTrackController):
 
     def _split_track_by_days(self, track, local_tz):
         """
-        Based on the track start_date and the duration,
-        split the track duration into :
-            start_time by day : number of time slot (15 minutes) that the track takes on that day.
-        E.g. :  start date = 01-01-2000 10:00 PM and duration = 3 hours
-                return {
-                    01-01-2000 10:00:00 PM: 8 (2 * 4),
-                    01-02-2000 00:00:00 AM: 4 (1 * 4)
-                }
-        Also return a set of all the time slots
+        Function inherited and allow to manage slots tracks
         """
         if track.is_slot_management:
             time_slots_by_tracks = {}
