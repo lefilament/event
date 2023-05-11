@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="view_event_track_form">
+            <field name="name">event.track.form.inherit</field>
+            <field name="model">event.track</field>
+            <field name="inherit_id" ref="website_event_track.view_event_track_form"/>
+            <field name="arch" type="xml">
+                <field name="color" position="after">
+                    <field name="seats_max"/>
+                    <field name="link"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
