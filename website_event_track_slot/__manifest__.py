@@ -12,7 +12,6 @@
     "depends": ["website_event", "website_event_track"],
     "data": [
         "security/ir.model.access.csv",
-        # "templates/event_templates.xml",
         "views/event_track_views.xml",
     ],
     "installable": True,
