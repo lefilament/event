@@ -3,10 +3,10 @@
 
 from odoo.http import request
 
-from odoo.addons.website_event.controllers.main import WebsiteEventController
+from odoo.addons.website_event_questions.controllers.main import WebsiteEvent
 
 
-class WebsiteEvent(WebsiteEventController):
+class WebsiteEvent(WebsiteEvent):
     def _process_attendees_form(self, event, form_details):
         """Process data posted from the attendee details form.
         Extracts question answers:
@@ -25,7 +25,7 @@ class WebsiteEvent(WebsiteEventController):
                 dummy, registration_index, question_id = key.split("-")
                 question_sudo = request.env["event.question"].browse(int(question_id))
                 answer_values = None
-                if question_sudo.question_type == "date":
+                if question_sudo.question_type == "date" or question_sudo.question_type == "date_time":
                     answer_values = {
                         "question_id": int(question_id),
                         "value_text_box": value,

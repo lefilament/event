@@ -11,7 +11,7 @@
             <xpath expr="/form/sheet/notebook" position="attributes">
                 <attribute
                     name="attrs"
-                >{'invisible': ['|', ('question_type', '=', 'text_box'), ('question_type', '=', 'date')]}</attribute>
+                >{'invisible': ['|', '|', ('question_type', '=', 'text_box'), ('question_type', '=', 'date'), ('question_type', '=', 'date_time')]}</attribute>
             </xpath>
         </field>
     </record>
@@ -27,7 +27,7 @@
             >
                 <attribute
                     name="attrs"
-                >{'invisible': ['|', ('question_type', '=', 'text_box'), ('question_type', '=', 'date')]}</attribute>
+                >{'invisible': ['|', '|', ('question_type', '=', 'text_box'), ('question_type', '=', 'date'), ('question_type', '=', 'date_time')]}</attribute>
             </xpath>
         </field>
     </record>

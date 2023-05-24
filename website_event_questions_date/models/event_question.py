@@ -8,7 +8,8 @@ class EventQuestion(models.Model):
     _inherit = "event.question"
 
     question_type = fields.Selection(
-        selection_add=[("date", "Date")], ondelete={"date": "cascade"}
+        selection_add=[("date", "Date"), ("date_time", "DateTime")],
+        ondelete={"date": "cascade", "date_time": "cascade"}
     )
     # ------------------------------------------------------
     # Fields declaration
