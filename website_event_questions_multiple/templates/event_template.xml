@@ -14,8 +14,9 @@
                             <input
                                 type="checkbox"
                                 class="form-check-input"
+                                t-att-value="answer.id"
                                 t-attf-id="#{registration_index}-#{question.id}"
-                                t-attf-name="question_answer-#{registration_index}-#{question.id}"
+                                t-attf-name="question_multi_answer-#{registration_index}-#{question.id}_#{answer.id}"
                             />
                             <label
                                 t-attf-for="question_answer-#{registration_index}-#{question.id}"
