@@ -16,7 +16,6 @@ class Event(models.Model):
         string="Event link",
         compute="_compute_event_share_link",
     )
-
     event_privacy = fields.Selection(
         [
             ("public", "Public"),
@@ -26,11 +25,19 @@ class Event(models.Model):
         string="Event privacy",
         default="public",
         required=True,
+        readonly=False,
+        store=True,
+        compute="_compute_event_privacy",
     )
 
     # ------------------------------------------------------
     # Computed fields / Search Fields
     # ------------------------------------------------------
+    @api.depends("event_type_id")
+    def _compute_event_privacy(self):
+        for event in self:
+            event.event_privacy = event.event_type_id.event_privacy
+
     @api.depends("event_privacy")
     def _compute_access_token(self):
         for event in self:

@@ -18,12 +18,14 @@ class WebsiteEvent(WebsiteEvent):
             registration["registration_answer_ids"] = []
 
         general_answer_ids = []
-        for key, value in form_details.items():
+        for key, _value in form_details.items():
             if "question_multi_answer" in key:
                 dummy, registration_index, question_answer = key.split("-")
                 question_id, answer_id = question_answer.split("_")
                 question_sudo = request.env["event.question"].browse(int(question_id))
-                answer_sudo = request.env["event.question.answer"].browse(int(answer_id))
+                answer_sudo = request.env["event.question.answer"].browse(
+                    int(answer_id)
+                )
                 answer_values = None
                 if question_sudo.question_type == "multiple_choice":
                     answer_values = {

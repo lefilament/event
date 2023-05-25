@@ -25,7 +25,10 @@ class WebsiteEvent(WebsiteEvent):
                 dummy, registration_index, question_id = key.split("-")
                 question_sudo = request.env["event.question"].browse(int(question_id))
                 answer_values = None
-                if question_sudo.question_type == "date" or question_sudo.question_type == "date_time":
+                if (
+                    question_sudo.question_type == "date"
+                    or question_sudo.question_type == "date_time"
+                ):
                     answer_values = {
                         "question_id": int(question_id),
                         "value_text_box": value,

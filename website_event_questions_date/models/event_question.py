@@ -9,7 +9,7 @@ class EventQuestion(models.Model):
 
     question_type = fields.Selection(
         selection_add=[("date", "Date"), ("date_time", "DateTime")],
-        ondelete={"date": "cascade", "date_time": "cascade"}
+        ondelete={"date": "cascade", "date_time": "cascade"},
     )
     # ------------------------------------------------------
     # Fields declaration

@@ -2,8 +2,7 @@
 # Copyright 2021 Moka Tourisme (https://www.mokatourisme.fr).
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import SUPERUSER_ID, _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo import SUPERUSER_ID, api, fields, models
 
 
 class EventRegistration(models.Model):

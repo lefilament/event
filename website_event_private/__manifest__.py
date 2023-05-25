@@ -13,6 +13,7 @@
     "data": [
         "templates/event_templates_list.xml",
         "views/event_views.xml",
+        "views/event_type_views.xml",
     ],
     "assets": {
         "web.assets_frontend": [
