@@ -14,6 +14,7 @@
     "data": [
         "templates/event_template.xml",
         "views/event_questions_views.xml",
+        "views/event_registration_views.xml",
     ],
     "installable": True,
     "auto_install": False,
