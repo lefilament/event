@@ -11,7 +11,6 @@
     "category": "Marketing",
     "depends": ["website_event"],
     "data": [
-        # "templates/event_templates_list.xml",
         "views/event_views.xml",
     ],
     "installable": True,

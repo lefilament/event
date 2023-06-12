@@ -8,5 +8,12 @@ class Event(models.Model):
     _inherit = "event.event"
 
     unique_attendee_email = fields.Boolean(
-        string="Unique registation email", default=False
+        string="Unique registration email", default=False
+    )
+    email_duplication_behaviour = fields.Selection(
+        selection=[
+            ("update", "Delete and recreate registration"),
+            ("ignore", "Ignore new registration"),
+        ],
+        string="Duplicated email registration behaviour",
     )

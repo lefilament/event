@@ -8,6 +8,10 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='tag_ids']" position="after">
                 <field name="unique_attendee_email" widget="boolean_toggle" />
+                <field
+                    name="email_duplication_behaviour"
+                    attrs="{'invisible': [('unique_attendee_email', '!=', True)], 'required': [('unique_attendee_email', '=', True)]}"
+                />
             </xpath>
         </field>
     </record>
