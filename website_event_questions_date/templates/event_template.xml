@@ -10,14 +10,14 @@
             <t t-if="question.question_type == 'date'">
                 <input
                     type="date"
-                    t-attf-name="question_answer-#{registration_index}-#{question.id}"
+                    t-attf-name="question_date-#{registration_index}-#{question.id}"
                     class="col-lg-12 form-control"
                 />
             </t>
             <t t-if="question.question_type == 'date_time'">
                 <input
                     type="datetime-local"
-                    t-attf-name="question_answer-#{registration_index}-#{question.id}"
+                    t-attf-name="question_date-#{registration_index}-#{question.id}"
                     class="col-lg-12 form-control"
                 />
             </t>

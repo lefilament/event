@@ -12,6 +12,17 @@ _logger = logging.getLogger(__name__)
 
 
 class WebsiteEvent(WebsiteEventController):
+    # @http.route()
+    # def events(self, page=1, **searches):
+    #     if event.event_privacy != "public" and not request.env.user.has_group(
+    #         "website.group_website_restricted_editor"
+    #     ):
+    #         access_token = post.get("access_token") or False
+    #         if not access_token or access_token != event.access_token:
+    #             _logger.warning("Access denied to event %s" % event.name)
+    #             return request.redirect("/event")
+    #     return super(WebsiteEvent, self).event_page(event, page, **post)
+
     @http.route()
     def event_page(self, event, page, **post):
         if event.event_privacy != "public" and not request.env.user.has_group(

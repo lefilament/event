@@ -16,23 +16,15 @@ class WebsiteEvent(WebsiteEvent):
             event, form_details
         )
 
-        for registration in registrations:
-            registration["registration_answer_ids"] = []
-
         general_answer_ids = []
         for key, value in form_details.items():
-            if "question_answer" in key and value:
+            if "question_date" in key and value:
                 dummy, registration_index, question_id = key.split("-")
-                question_sudo = request.env["event.question"].browse(int(question_id))
                 answer_values = None
-                if (
-                    question_sudo.question_type == "date"
-                    or question_sudo.question_type == "date_time"
-                ):
-                    answer_values = {
-                        "question_id": int(question_id),
-                        "value_text_box": value,
-                    }
+                answer_values = {
+                    "question_id": int(question_id),
+                    "value_text_box": value,
+                }
 
                 if answer_values and not int(registration_index):
                     general_answer_ids.append((0, 0, answer_values))

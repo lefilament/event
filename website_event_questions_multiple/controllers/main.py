@@ -14,9 +14,6 @@ class WebsiteEvent(WebsiteEvent):
             event, form_details
         )
 
-        for registration in registrations:
-            registration["registration_answer_ids"] = []
-
         general_answer_ids = []
         for key, _value in form_details.items():
             if "question_multi_answer" in key:
