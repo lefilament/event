@@ -5,10 +5,8 @@ from odoo.addons.website_event.controllers.main import WebsiteEventController
 
 
 class WebsiteEvent(WebsiteEventController):
-
     def _create_attendees_from_registration_post(self, event, registration_data):
-        """
-        """
+        """ """
         if event.unique_attendee_email:
             existing_registration_ids = event.sudo().registration_ids.filtered(
                 lambda r: r.email in [data.get("email") for data in registration_data]
