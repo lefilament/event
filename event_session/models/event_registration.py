@@ -57,6 +57,7 @@ class EventRegistration(models.Model):
                 ]
             )
         )
+
         if onsubscribe_schedulers:
             onsubscribe_schedulers.mail_done = False
             onsubscribe_schedulers.with_user(SUPERUSER_ID).execute()

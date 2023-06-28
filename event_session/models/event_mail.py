@@ -42,15 +42,18 @@ class EventMail(models.Model):
         self.env["event.mail.session"].schedule_communications(autocommit=autocommit)
         return res
 
-    def execute(self):  # pragma: no cover
+    # def execute(self):  # pragma: no cover
         # OVERRIDE. Just in case, prevent execution of schedulers linked to event.event
         # that are using sessions. They manage that through event.mail.session.
         # This should never happen because they always have scheduled_date = False.
-        session_records = self.filtered("use_sessions")
-        regular_records = self - session_records
-        if session_records:  # pragma: no cover
-            _logger.error("Trying to execute event.mail linked to a session event.")
-        return super(EventMail, regular_records).execute()
+        # print("event session: execute")
+        # session_records = self.filtered("use_sessions")
+        # regular_records = self - session_records
+        # print(session_records)
+        # print(regular_records)
+        # if session_records:  # pragma: no cover
+        #     _logger.error("Trying to execute event.mail linked to a session event.")
+        # return super(EventMail, regular_records).execute()
 
     def _prepare_session_mail_scheduler_vals(self, session):
         return {

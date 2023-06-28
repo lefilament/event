@@ -204,10 +204,11 @@
                     </group>
                     <notebook>
                         <page string="Communication" name="event_communication">
-                            <field name="event_mail_ids" options="{'no_open': True}">
+                            <field name="event_mail_ids" options="{'no_open': True}" context="{'default_event_id': active_id}">
                                 <tree editable="bottom">
                                     <field name="sequence" widget="handle" />
                                     <field name="notification_type" />
+                                    <field name="event_id" invisible="1" />
                                     <field name="template_model_id" invisible="1" />
                                     <field
                                         name="template_ref"
