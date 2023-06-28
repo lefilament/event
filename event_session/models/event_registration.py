@@ -39,21 +39,6 @@ class EventRegistration(models.Model):
             else:
                 rec.event_end_date = rec.event_id.date_end
 
-    # @api.constrains("session_id")
-    # def _check_seats_limit(self):
-    #     # OVERRIDE to handle limits per session
-    #     session_records = self.filtered("session_id")
-    #     regular_records = self - session_records
-    #     for rec in session_records:
-    #         session = rec.session_id
-    #         if (
-    #             session.seats_limited
-    #             and session.seats_max
-    #             and session.seats_available < (1 if rec.state == "draft" else 0)
-    #         ):
-    #             raise ValidationError(_("No more seats available for this session."))
-    #     return super(EventRegistration, regular_records)._check_seats_limit()
-
     def _update_mail_schedulers(self):
         # OVERRIDE to handle sessions' mail scheduler, not event ones.
         session_records = self.filtered("session_id")
@@ -72,8 +57,8 @@ class EventRegistration(models.Model):
                 ]
             )
         )
-        if not onsubscribe_schedulers:
-            return
-        onsubscribe_schedulers.mail_done = False
-        onsubscribe_schedulers.with_user(SUPERUSER_ID).execute()
+        if onsubscribe_schedulers:
+            onsubscribe_schedulers.mail_done = False
+            onsubscribe_schedulers.with_user(SUPERUSER_ID).execute()
+
         return super(EventRegistration, regular_records)._update_mail_schedulers()
