@@ -36,7 +36,7 @@
                     t-set="seats_max"
                     t-value="min(seats_max_ticket, seats_max_event, ticket.max_ticket)"
                 />
-                <t t-foreach="range(0, seats_max)" t-as="nb">
+                <t t-foreach="range(0, seats_max + 1)" t-as="nb">
                     <option
                         t-out="nb"
                         t-att-selected="len(ticket) == 0 and nb == 0 and 'selected'"
