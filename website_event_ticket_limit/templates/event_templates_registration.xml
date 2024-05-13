@@ -63,7 +63,7 @@
             position="after"
         >
             <select
-                t-elif="max_ticket &gt; 1"
+                t-elif="max_ticket &gt;= 1"
                 t-att-name="'nb_register-%s' % (tickets.id if tickets else 0)"
                 class="d-inline w-auto form-select"
             >
