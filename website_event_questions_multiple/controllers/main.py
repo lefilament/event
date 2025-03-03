@@ -31,6 +31,22 @@ class WebsiteEvent(WebsiteEvent):
                         "value_text_box": answer_sudo.name,
                     }
 
+                # TODO
+                # - vérifier que les réponses multiples obligatoires ont une réponse
+
+                print(question_sudo)
+                print("-- answer_sudo")
+                print(answer_sudo)
+                print(answer_sudo.mapped('name'))
+                print(answer_sudo.mapped('question_id'))
+                print(answer_sudo.mapped('sequence'))
+                print(answer_sudo.mapped('number_max'))
+                # print(answer_sudo.mapped('registration_answer_ids'))
+                print(answer_sudo.mapped('answer_number'))
+                print(answer_sudo.mapped('remaining_number'))
+                print(answer_sudo.mapped('fully_booked'))
+
+
                 if answer_values and not int(registration_index):
                     general_answer_ids.append((0, 0, answer_values))
                 elif answer_values:
