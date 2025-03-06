@@ -9,6 +9,7 @@ import ajax from "web.ajax";
 // extends from EventRegistrationForm from ocb/addons/website_event/static/src/js/website_event.js
 export const EventRegistrationFormWithValidation = EventRegistrationForm.extend(
   {
+    /// ------------------------------------------------
     /// WARNING: code duplication for lack of extensibility
     // this is a copy of the on_click function of the parent class
     // which is the one opening the modal with these steps:
@@ -86,14 +87,14 @@ export const EventRegistrationFormWithValidation = EventRegistrationForm.extend(
         });
       }
     },
+    /// ------------------------------------------------
 
     /**
      * @override
      * override the parent method to replace call to the modified function
      */
     on_click: async function (ev) {
-      console.log("Entering alternative modal opener.");
-      // get modal from parent
+      // get modal from copy (not super())
       const $modal = await this.on_click_parent(ev);
       if ($modal) {
         this.add_validation($modal);
@@ -108,46 +109,36 @@ export const EventRegistrationFormWithValidation = EventRegistrationForm.extend(
 
       // prevent default
       $modal.on("submit", "form", function (ev) {
-        // const tokenInput = document.createElement("input");
-        // tokenInput.setAttribute("name", "recaptcha_token_response");
-        // tokenInput.setAttribute("type", "hidden");
-        // tokenInput.setAttribute("value", tokenObj.token);
-        // ev.currentTarget.appendChild(tokenInput);
         console.log("form submitted");
 
-        // search all groups
-        const $mandatory_check_groups = $modal.find(
-          "div.form-check-group.is_mandatory_answer"
-        );
+        // search all check groups with mandatory answers
+        $modal
+          .find("div.form-check-group.is_mandatory_answer")
+          .each(function (index) {
+            console.log("testing group", index);
+            // count number of checkbox
+            let checked_count = 0;
+            $(this)
+              .find(".form-check-input")
+              .each(function () {
+                if ($(this).prop("checked")) checked_count++;
+              });
 
-        $mandatory_check_groups.each(function (index) {
-          console.log("testing group", index);
-
-          // count number of checkbox
-          let checked_count = 0;
-          $(this).find(".form-check-input").each(function (index) {
-            if ($(this).prop("checked")) {
-                console.log("box number", index, "is checked");
-                
-              checked_count++;
+            // if zero, prevent default and display message
+            if (checked_count == 0) {
+              console.log("at least one checkbox must be checked");
+              $(this).find(".mandatory-message").removeClass("d-none")
+              ev.preventDefault();
+              ev.stopPropagation();
             }
           });
-
-          // if zero, prevent default and display message
-          if (checked_count == 0) {
-            console.log("at least one must be checked");
-            ev.preventDefault();
-            ev.stopPropagation();
-          }
-        });
       });
     },
   }
 );
 
-console.log("----- widget extend");
-
 /// register widget
+// (also copied from parent)
 publicWidget.registry.EventRegistrationFormWithValidationInstance =
   publicWidget.Widget.extend({
     selector: "#registration_form",
@@ -158,7 +149,7 @@ publicWidget.registry.EventRegistrationFormWithValidationInstance =
     start: function () {
       console.log("instance start override");
       var def = this._super.apply(this, arguments);
-      this.instance = new EventRegistrationFormWithValidation(this);
+      this.instance = new EventRegistrationFormWithValidation(this); // <--- here we instantiante child widget
       return Promise.all([def, this.instance.attachTo(this.$el)]);
     },
     /**
@@ -170,3 +161,5 @@ publicWidget.registry.EventRegistrationFormWithValidationInstance =
       this.instance.setElement(this.$el);
     },
   });
+
+console.log("form validation widget registered");
