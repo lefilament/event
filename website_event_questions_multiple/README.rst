@@ -28,7 +28,7 @@ Questions on Events - Type multiple
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows to add new question type : Selection multiple which allows
+This module allows to add new question type : Multiple Selection which allows
 attendees to select multiple answers to a question.
 
 **Table of contents**
@@ -39,7 +39,7 @@ attendees to select multiple answers to a question.
 Configuration
 =============
 
-On an event, when creating a new question, you can select new type : Selection multiple
+On an event, when creating a new question, you can select new type : Multiple Selection
 
 Bug Tracker
 ===========
