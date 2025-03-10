@@ -1,5 +1,10 @@
 /** @odoo-module **/
 
+/**
+* @copyright: Odoo SA
+* @license: LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+*/
+
 import publicWidget from "web.public.widget";
 import EventRegistrationForm from "website_event.website_event";
 
