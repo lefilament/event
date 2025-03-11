@@ -145,7 +145,7 @@ export const EventRegistrationFormWithValidation = EventRegistrationForm.extend(
     },
 });
 
-// / register widget
+// Register widget
 // (also copied from parent)
 publicWidget.registry.EventRegistrationFormWithValidationInstance =
     publicWidget.Widget.extend({
