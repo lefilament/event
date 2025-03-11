@@ -9,18 +9,23 @@
     >
         <xpath expr="//span" position="after">
             <t t-if="question.question_type == 'multiple_choice'">
-                <div class="mb-4">
+                <div
+                    t-attf-class="mb-4 form-check-group #{'is_mandatory_answer' if question.is_mandatory_answer else ''}"
+                >
+                    <div class="mandatory-message alert alert-danger d-none">
+                        Please select at least one checkbox.
+                    </div>
                     <t t-foreach="question.answer_ids" t-as="answer">
                         <div class="form-check">
                             <input
                                 type="checkbox"
                                 class="form-check-input"
                                 t-att-value="answer.id"
-                                t-attf-id="#{registration_index}-#{question.id}"
+                                t-attf-id="#{registration_index}-#{question.id}-#{answer.id}"
                                 t-attf-name="question_multi_answer-#{registration_index}-#{question.id}_#{answer.id}"
                             />
                             <label
-                                t-attf-for="question_answer-#{registration_index}-#{question.id}"
+                                t-attf-for="#{registration_index}-#{question.id}-#{answer.id}"
                                 class="form-check-label fw-normal"
                             ><span t-out="answer.name" />
                             </label>

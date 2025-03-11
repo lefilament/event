@@ -4,8 +4,8 @@
     "category": "Marketing",
     "website": "https://github.com/OCA/event",
     "development_status": "Production/Stable",
-    "author": "Le Filament, Odoo Community Association (OCA)",
-    "license": "AGPL-3",
+    "author": "Le Filament, Odoo Community Association (OCA), Odoo S.A.",
+    "license": "LGPL-3",
     "application": False,
     "depends": ["website_event_questions"],
     "data": [
@@ -13,6 +13,11 @@
         "views/event_questions_views.xml",
         "views/event_registration_views.xml",
     ],
+    "assets": {
+        "web.assets_frontend": [
+            "website_event_questions_multiple/static/src/js/form_validation.esm.js"
+        ],
+    },
     "installable": True,
     "auto_install": False,
 }
