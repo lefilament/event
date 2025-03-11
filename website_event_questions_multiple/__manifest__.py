@@ -4,7 +4,7 @@
     "category": "Marketing",
     "website": "https://github.com/OCA/event",
     "development_status": "Production/Stable",
-    "author": "Le Filament, Odoo Community Association (OCA), Odoo",
+    "author": "Le Filament, Odoo Community Association (OCA), Odoo S.A.",
     "license": "LGPL-3",
     "application": False,
     "depends": ["website_event_questions"],

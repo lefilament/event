@@ -17,13 +17,12 @@ class WebsiteEvent(WebsiteEvent):
         # list all question_multi_answer with is_mandatory_answer
         mandatory_multiple_general_question_answer_count = {}
         mandatory_multiple_specific_question_ids = set()
-        filter = (
-            lambda q: q.question_type == "multiple_choice"
-            and q.is_mandatory_answer == True
+        req_filter = (
+            lambda q: q.question_type == "multiple_choice" and q.is_mandatory_answer
         )
-        for general_question in event.general_question_ids.filtered(filter):
+        for general_question in event.general_question_ids.filtered(req_filter):
             mandatory_multiple_general_question_answer_count[general_question.id] = 0
-        for specific_question in event.specific_question_ids.filtered(filter):
+        for specific_question in event.specific_question_ids.filtered(req_filter):
             mandatory_multiple_specific_question_ids.add(specific_question.id)
 
         mandatory_multiple_specific_question_answer_count = [

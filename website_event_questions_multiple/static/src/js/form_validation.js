@@ -1,9 +1,10 @@
 /** @odoo-module **/
 
 /**
-* @copyright: Odoo SA
-* @license: LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
-*/
+ * @copyright: 2025- Le Filament (https://le-filament.com)
+ * @copyright: 2004-2015 Odoo S.A.
+ * @license: LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+ */
 
 import publicWidget from "web.public.widget";
 import EventRegistrationForm from "website_event.website_event";
@@ -11,7 +12,7 @@ import EventRegistrationForm from "website_event.website_event";
 import ajax from "web.ajax";
 
 /// declare widget
-// extends from EventRegistrationForm from ocb/addons/website_event/static/src/js/website_event.js
+// extends from EventRegistrationForm from Odoo addon website_event/static/src/js/website_event.js
 export const EventRegistrationFormWithValidation = EventRegistrationForm.extend({
     /// ------------------------------------------------
     /// WARNING: code duplication for lack of extensibility
