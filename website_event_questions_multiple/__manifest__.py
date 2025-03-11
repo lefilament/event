@@ -15,7 +15,7 @@
     ],
     "assets": {
         "web.assets_frontend": [
-            "website_event_questions_multiple/static/src/js/form_validation.js"
+            "website_event_questions_multiple/static/src/js/form_validation.esm.js"
         ],
     },
     "installable": True,
