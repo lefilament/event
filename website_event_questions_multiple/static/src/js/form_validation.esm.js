@@ -6,16 +6,19 @@
  * @license: LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
  */
 
-import publicWidget from "web.public.widget";
 import EventRegistrationForm from "website_event.website_event";
-
+import Modal from "web.lib.bootstrap";
 import ajax from "web.ajax";
+import core from "web.core";
+import publicWidget from "web.public.widget";
 
-// / declare widget
+const _t = core._t;
+
+// Declare widget
 // extends from EventRegistrationForm from Odoo addon website_event/static/src/js/website_event.js
 export const EventRegistrationFormWithValidation = EventRegistrationForm.extend({
-    // / ------------------------------------------------
-    // / WARNING: code duplication for lack of extensibility
+    // ------------------------------------------------
+    // WARNING: code duplication for lack of extensibility
     // this is a copy of the on_click function of the parent class
     // which is the one opening the modal with these steps:
     // 1. when clicking on "Register button"
@@ -25,6 +28,7 @@ export const EventRegistrationFormWithValidation = EventRegistrationForm.extend(
     // 5. inject the modal inside the page (there can be multiple instances of the modal if the register button is clicked multiple times)
     // the only added behavior is to return the modal class to be able to add form validation logic
     // return value is a Promise<modal | undefined>
+    // eslint is applied
     on_click_parent: async function (ev) {
         ev.preventDefault();
         ev.stopPropagation();
@@ -36,15 +40,15 @@ export const EventRegistrationFormWithValidation = EventRegistrationForm.extend(
             post[$(this).attr("name")] = $(this).val();
         });
         var tickets_ordered = _.some(
-            _.map(post, function (value, key) {
-                return parseInt(value);
+            _.map(post, function (value) {
+                return parseInt(value, 10);
             })
         );
         if (!tickets_ordered) {
             $('<div class="alert alert-info"/>')
                 .text(_t("Please select at least one ticket."))
                 .insertAfter("#registration_form table");
-            return new Promise(function () {});
+            return new Promise(() => undefined);
         }
         $button.attr("disabled", true);
         var action = $form.data("action") || $form.attr("action");
@@ -64,7 +68,8 @@ export const EventRegistrationFormWithValidation = EventRegistrationForm.extend(
                 return false;
             }
             var $modal = $(modal);
-            $modal.find(".modal-body > div").removeClass("container"); // Retrocompatibility - REMOVE ME in master / saas-19
+            // Retrocompatibility - REMOVE ME in master / saas-19
+            $modal.find(".modal-body > div").removeClass("container");
             $modal.appendTo(document.body);
             const modalBS = new Modal($modal[0], {
                 backdrop: "static",
@@ -79,12 +84,12 @@ export const EventRegistrationFormWithValidation = EventRegistrationForm.extend(
             $modal.on("click", ".btn-close", function () {
                 $button.prop("disabled", false);
             });
-            $modal.on("submit", "form", function (ev) {
+            $modal.on("submit", "form", function (evt) {
                 const tokenInput = document.createElement("input");
                 tokenInput.setAttribute("name", "recaptcha_token_response");
                 tokenInput.setAttribute("type", "hidden");
                 tokenInput.setAttribute("value", tokenObj.token);
-                ev.currentTarget.appendChild(tokenInput);
+                evt.currentTarget.appendChild(tokenInput);
             });
             // THIS IS THE ONLY REAL MODIFICATION
             // return the $modal jQuery object
@@ -129,7 +134,7 @@ export const EventRegistrationFormWithValidation = EventRegistrationForm.extend(
                         });
 
                     // If zero, prevent default and display message
-                    if (checked_count == 0) {
+                    if (checked_count === 0) {
                         console.log("at least one checkbox must be checked");
                         $(this).find(".mandatory-message").removeClass("d-none");
                         ev.preventDefault();
@@ -152,7 +157,8 @@ publicWidget.registry.EventRegistrationFormWithValidationInstance =
         start: function () {
             console.log("instance start override");
             var def = this._super.apply(this, arguments);
-            this.instance = new EventRegistrationFormWithValidation(this); // <--- here we instantiante child widget
+            // Here we instantiante child widget
+            this.instance = new EventRegistrationFormWithValidation(this);
             return Promise.all([def, this.instance.attachTo(this.$el)]);
         },
         /**
