@@ -7,7 +7,6 @@
  */
 
 import EventRegistrationForm from "website_event.website_event";
-import Modal from "web.lib.bootstrap";
 import ajax from "web.ajax";
 import core from "web.core";
 import publicWidget from "web.public.widget";
@@ -71,6 +70,8 @@ export const EventRegistrationFormWithValidation = EventRegistrationForm.extend(
             // Retrocompatibility - REMOVE ME in master / saas-19
             $modal.find(".modal-body > div").removeClass("container");
             $modal.appendTo(document.body);
+            // "Modal" is coming from bootstrap which does not use ESM modules
+            // eslint-disable-next-line no-undef
             const modalBS = new Modal($modal[0], {
                 backdrop: "static",
                 keyboard: false,
