@@ -21,11 +21,11 @@
                                 type="checkbox"
                                 class="form-check-input"
                                 t-att-value="answer.id"
-                                t-attf-id="#{registration_index}-#{question.id}"
+                                t-attf-id="#{registration_index}-#{question.id}-#{answer.id}"
                                 t-attf-name="question_multi_answer-#{registration_index}-#{question.id}_#{answer.id}"
                             />
                             <label
-                                t-attf-for="question_answer-#{registration_index}-#{question.id}"
+                                t-attf-for="#{registration_index}-#{question.id}-#{answer.id}"
                                 class="form-check-label fw-normal"
                             ><span t-out="answer.name" />
                             </label>
